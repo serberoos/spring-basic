@@ -1,0 +1,24 @@
+// SpringBoot.io 에서 자동으로 만들어주는 부분.
+plugins {
+	id 'org.springframework.boot' version '2.6.3' // 버전
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java' //java
+}
+
+group = 'hello'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11' // java 11
+
+repositories {
+	mavenCentral() //의존성을 mavenCentral이라는 곳에서 받는다.
+}
+
+dependencies { // 의존성 설정
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
