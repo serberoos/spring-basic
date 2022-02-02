@@ -49,9 +49,9 @@ public class HelloController {
 
     }
     /*
-    정리
-    1. 정적 컨텐츠 : 파일을 그대로 내려준다.
-    2. MVC와 Template 엔진 : 템플릿 엔진을 모델 뷰 컨트롤러 방식으로 쪼개서 랜더링후 랜더링된 html을 내려준다.
-    3. api 방식 : 객체를 내려준다. MappingJackson2HttpMessageConverter | @ResponseBody
+        정리
+        1. 정적 컨텐츠 : 파일을 그대로 내려준다.
+        2. MVC와 Template 엔진 : 템플릿 엔진을 모델 뷰 컨트롤러 방식으로 쪼개서 랜더링후 랜더링된 html을 내려준다.
+        3. api 방식 : 객체를 내려준다. MappingJackson2HttpMessageConverter | @ResponseBody
      */
 }
