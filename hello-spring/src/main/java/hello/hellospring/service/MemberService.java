@@ -7,9 +7,12 @@ import hello.hellospring.repository.MemoryMemberRepository;
 import java.util.List;
 import java.util.Optional;
 // 서비스의 변수명은 비즈니스와 가까워야함 인터페이스는 정 반대
-public class MemberService {
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+public class MemberService { //ctrl + shift+ t 를 하면 테스트 케이스를 쉽게 작성할 수 있음.
+    private final MemberRepository memberRepository;// = new MemoryMemberRepository();
 
+    public MemberService(MemberRepository memberRepository){
+        this.memberRepository = memberRepository;
+    }
     /*
         회원 가입
      */
