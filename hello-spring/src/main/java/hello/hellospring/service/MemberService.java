@@ -1,15 +1,19 @@
-package hello.hellospring.service;
+package hello.hellospring.service; // hello.hellospring 하위 패키지를 뒤져서 Spring bean으로 등록한다.
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 // 서비스의 변수명은 비즈니스와 가까워야함 인터페이스는 정 반대
+@Service //@Component라는 어노테이션이 있음.
 public class MemberService { //ctrl + shift+ t 를 하면 테스트 케이스를 쉽게 작성할 수 있음.
     private final MemberRepository memberRepository;// = new MemoryMemberRepository();
 
+    @Autowired
     public MemberService(MemberRepository memberRepository){
         this.memberRepository = memberRepository;
     }

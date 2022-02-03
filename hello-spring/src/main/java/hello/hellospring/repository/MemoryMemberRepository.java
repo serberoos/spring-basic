@@ -1,9 +1,11 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>(); // HashMap 형태로 객체 넣어주기(value)
@@ -38,3 +40,9 @@ public class MemoryMemberRepository implements MemberRepository {
         store.clear(); //clear
     }
 }
+
+// Controller, Service, Repository
+// Controller를 통해서 외부 요청을 받고
+// Service에서 비즈니스 로직을 만들고
+// Repository에서 데이터를 저장한다.
+// 정형화되어 있는 패턴이다.
