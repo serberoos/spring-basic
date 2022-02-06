@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 // 서비스의 변수명은 비즈니스와 가까워야함 인터페이스는 정 반대
-@Service //@Component라는 어노테이션이 있음.
+//@Service //@Component라는 어노테이션이 있음.
 public class MemberService { //ctrl + shift+ t 를 하면 테스트 케이스를 쉽게 작성할 수 있음.
     private final MemberRepository memberRepository;// = new MemoryMemberRepository();
 
-    @Autowired
+    //@Autowired
     public MemberService(MemberRepository memberRepository){
         this.memberRepository = memberRepository;
     }
