@@ -1,8 +1,11 @@
 package hello.hellospring.controller;
 
+import hello.hellospring.domain.Member;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class MemberController {
@@ -24,4 +27,19 @@ public class MemberController {
 //        this.memberService = memberService;
 //    }
     // 누군가 memberservice 를 set하게 되면 누군가가 호출해서 잘못 바꿔쳐질 수 있음. (호출되면 안되는 메서드가 호출됨.)
+    @GetMapping("/members/new")
+    public String createForm() {
+        return "members/createMemberForm";
+    }
+
+    @PostMapping("/members/new")
+    public String create(MemberForm form){
+        Member member = new Member();
+        member.setName(form.getName());
+
+        memberService.join(member);
+
+        return "redirect:/";
+    }
+
 }
