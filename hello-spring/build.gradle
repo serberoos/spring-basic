@@ -17,6 +17,8 @@ dependencies { // 의존성 설정
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // 타임리프
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc' //jdbc
+	runtimeOnly 'com.h2database:h2' //jdbc
 }
 //external library에서 연관된 의존성들을 전부 불러온다.
 
