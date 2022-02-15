@@ -5,11 +5,13 @@ import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 // 서비스의 변수명은 비즈니스와 가까워야함 인터페이스는 정 반대
 //@Service //@Component라는 어노테이션이 있음.
+@Transactional //JPA를 사용시 항상 Transactional이 있어야 함. 회원가입 할때만 필요하므로 Join에 해줘도 됨.(모든데이터 변경이 Transactional 안에서 실행되어야 한다.)
 public class MemberService { //ctrl + shift+ t 를 하면 테스트 케이스를 쉽게 작성할 수 있음.
     private final MemberRepository memberRepository;// = new MemoryMemberRepository();
 
