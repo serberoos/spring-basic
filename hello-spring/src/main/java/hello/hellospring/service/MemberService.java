@@ -23,18 +23,26 @@ public class MemberService { //ctrl + shift+ t 를 하면 테스트 케이스를
         회원 가입
      */
     public Long join(Member member) {
-        // 같은 이름이 있는 중복회원 X
-        validateDuplicateMember(member); // 중복 회원 검증
+
+        long start = System.currentTimeMillis();
+
+        try {
+            // 같은 이름이 있는 중복회원 X
+            validateDuplicateMember(member); // 중복 회원 검증
         /* 아래처럼 쓰면 Optional이 모양이 안 예쁨.
             Optional<Member> result = memberRepository.findByName(member.getName());
             result.ifPresent(m ->{ // 어떤 값이 있으면 이 로직이 실행됨 Option이기 때문에 가능한 것 기존에 null일 경우는 힘듬.
                 throw new IllegalStateException("이미 존재하는 회원입니다.");
             });
         */
+            memberRepository.save(member);
+            return member.getId();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("join = "+ timeMs + "ms");
+        }
 
-
-        memberRepository.save(member);
-        return member.getId();
     }
 
     private void validateDuplicateMember(Member member) { //이런 경우 메소드로 뽑는게 좋다. Extract Method
@@ -48,7 +56,15 @@ public class MemberService { //ctrl + shift+ t 를 하면 테스트 케이스를
      * 전체 회원 조회
      */
     public List<Member> findMembers(){
-        return memberRepository.findAll();
+        long start = System.currentTimeMillis();
+        try {
+            return memberRepository.findAll();
+        } finally {
+           long finish = System.currentTimeMillis();
+           long timeMs = finish - start;
+           System.out.println("findMembers"+ timeMs+ "ms");
+        }
+
     }
 
     public Optional<Member> findOne(Long memberId) {
