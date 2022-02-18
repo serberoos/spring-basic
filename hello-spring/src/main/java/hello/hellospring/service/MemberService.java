@@ -24,9 +24,9 @@ public class MemberService { //ctrl + shift+ t 를 하면 테스트 케이스를
      */
     public Long join(Member member) {
 
-        long start = System.currentTimeMillis();
-
-        try {
+//        long start = System.currentTimeMillis();
+//
+//        try {
             // 같은 이름이 있는 중복회원 X
             validateDuplicateMember(member); // 중복 회원 검증
         /* 아래처럼 쓰면 Optional이 모양이 안 예쁨.
@@ -37,11 +37,11 @@ public class MemberService { //ctrl + shift+ t 를 하면 테스트 케이스를
         */
             memberRepository.save(member);
             return member.getId();
-        } finally {
-            long finish = System.currentTimeMillis();
-            long timeMs = finish - start;
-            System.out.println("join = "+ timeMs + "ms");
-        }
+//        } finally {
+//            long finish = System.currentTimeMillis();
+//            long timeMs = finish - start;
+//            System.out.println("join = "+ timeMs + "ms");
+//        }
 
     }
 
@@ -56,14 +56,14 @@ public class MemberService { //ctrl + shift+ t 를 하면 테스트 케이스를
      * 전체 회원 조회
      */
     public List<Member> findMembers(){
-        long start = System.currentTimeMillis();
-        try {
+//        long start = System.currentTimeMillis();
+//        try {
             return memberRepository.findAll();
-        } finally {
-           long finish = System.currentTimeMillis();
-           long timeMs = finish - start;
-           System.out.println("findMembers"+ timeMs+ "ms");
-        }
+//        } finally {
+//           long finish = System.currentTimeMillis();
+//           long timeMs = finish - start;
+//           System.out.println("findMembers"+ timeMs+ "ms");
+//        }
 
     }
 
