@@ -13,4 +13,17 @@ class CoreApplicationTests {
 	void contextLoads() {
 	}
 
-}
+}    private final LogDemoService logDemoService;
+	private final MyLogger myLogger;
+
+	@RequestMapping("log-demo")
+	@ResponseBody
+	public String logDemo(HttpServletRequest request){
+		String requestURL = request.getRequestURL().toString();
+		myLogger.setRequestURL(requestURL);
+
+		myLogger.log("controller test");
+		logDemoService.logic("testId");
+		return "OK";
+	}
+
