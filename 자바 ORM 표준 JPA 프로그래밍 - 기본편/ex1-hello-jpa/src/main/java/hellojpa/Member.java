@@ -7,6 +7,12 @@ import javax.persistence.Table;
 
 @Entity
 public class Member {
+    public Member(){} //기본생성자가 필요.
+
+    public Member(Long id, String name){
+        this.id = id;
+        this.name = name;
+    }
     @Id
     private Long id;
     private String name;
