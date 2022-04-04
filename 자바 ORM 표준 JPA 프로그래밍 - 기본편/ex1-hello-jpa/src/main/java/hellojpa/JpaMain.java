@@ -54,12 +54,18 @@ public class JpaMain {
 //            em.persist(member1);
 //            em.persist(member2);
 
-            Member member = new Member(200L, "member200");
-            em.persist(member);
+            Member member = em.find(Member.class, 150L);
 
-            em.flush();
+            member.setName("AAAAA");
 
-            System.out.println("=================================");
+//            em.detach(member); //준 영속 상태로
+            em.clear(); // 완전히 초기화
+
+            Member member2 = em.find(Member.class, 150L); //select가 두번 나감
+
+            //em.close() 완전히 영속성 컨텍스트를 종료료
+
+           System.out.println("=================================");
 
             tx.commit();
         }catch(Exception e){
