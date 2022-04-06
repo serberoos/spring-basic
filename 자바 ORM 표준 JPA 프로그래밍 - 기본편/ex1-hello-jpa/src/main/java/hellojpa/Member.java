@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+@Table(name ="MBR")
 public class Member {
     public Member(){} //기본생성자가 필요.
 
