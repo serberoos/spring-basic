@@ -6,7 +6,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="MBR")
 public class Member {
     public Member(){} //기본생성자가 필요.
 
@@ -17,6 +16,7 @@ public class Member {
     @Id
     private Long id;
     private String name;
+    private int age;
 
     public Long getId() {
         return id;

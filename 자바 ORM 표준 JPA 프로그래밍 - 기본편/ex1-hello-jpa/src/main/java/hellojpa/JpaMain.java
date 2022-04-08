@@ -56,12 +56,12 @@ public class JpaMain {
 
             Member member = em.find(Member.class, 150L);
 
-            member.setName("AAAAA");
+//            member.setName("AAAAA");
 
 //            em.detach(member); //준 영속 상태로
-            em.clear(); // 완전히 초기화
+//            em.clear(); // 완전히 초기화
 
-            Member member2 = em.find(Member.class, 150L); //select가 두번 나감
+//            Member member2 = em.find(Member.class, 150L); //select가 두번 나감
 
             //em.close() 완전히 영속성 컨텍스트를 종료료
 
