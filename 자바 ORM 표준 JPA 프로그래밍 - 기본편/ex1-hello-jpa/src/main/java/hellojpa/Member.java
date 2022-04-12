@@ -3,12 +3,17 @@ package hellojpa;
 import javax.persistence.*;
 
 @Entity
-@SequenceGenerator(name="member_seq_generator", sequenceName = "member_seq")
+@TableGenerator(
+        name = "MEMBER_SEQ_GENERATOR",
+        table = "MY_SEQUENCES", // table 명
+        pkColumnValue = "MEMBER_SEQ", allocationSize = 1
+)
 public class Member {
     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO) // DB 방언에 맞춰서 자연스럽게 생성
 //    @GeneratedValue(strategy = GenerationType.IDENTITY) // DB에 위임
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq_generator")
+    @GeneratedValue(strategy = GenerationType.TABLE,
+        generator = "MEMBER_SEQ_GENERATOR")
     private Long id;
 
     @Column(name = "name", nullable = false)
