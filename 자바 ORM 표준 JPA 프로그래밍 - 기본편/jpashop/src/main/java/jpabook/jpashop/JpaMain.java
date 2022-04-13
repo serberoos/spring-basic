@@ -28,15 +28,21 @@ public class JpaMain {
             //회원 저장
             Member member = new Member();
             member.setUsername("member1");
-            member.setTeam(team);
             em.persist(member);
+            team.addMember(member);
 
-            Member findMember = em.find(Member.class, member.getId());
-            List<Member> members = findMember.getTeam().getMembers();            // 양방향 연관관계 member -> team -> member
+            em.flush();
+            em.clear();
 
-            for (Member m : members){
+            Team findTeam = em.find(Team.class, team.getId());
+            List<Member> members = findTeam.getMembers();
+
+
+
+            for(Member m : members){
                 System.out.println("m = " + m.getUsername());
             }
+
             tx.commit();
         }catch(Exception e){
             tx.rollback();
