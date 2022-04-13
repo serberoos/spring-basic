@@ -2,7 +2,9 @@ package jpabook.jpashop;
 
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderItem;
 import jpabook.jpashop.domain.Team;
+import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,30 +22,15 @@ public class JpaMain {
         tx.begin(); // database Transaction 시작
 
         try {
-            // 팀 저장
-            Team team = new Team();
-            team.setName("TeamA");
-            em.persist(team);
+            Order order = new Order();
+            em.persist(order);
 
-            //회원 저장
-            Member member = new Member();
-            member.setUsername("member1");
-            em.persist(member);
-            team.addMember(member);
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrder(order);
 
-            em.flush();
-            em.clear();
-
-            Team findTeam = em.find(Team.class, team.getId());
-            List<Member> members = findTeam.getMembers();
-
-
-
-            for(Member m : members){
-                System.out.println("m = " + m.getUsername());
-            }
-
-            tx.commit();
+            em.persist(orderItem);
+            // 양방향 연관관계가 아니라면 이렇게 개발하는데 아무 문제가 없음음
+           tx.commit();
         }catch(Exception e){
             tx.rollback();
         } finally {
