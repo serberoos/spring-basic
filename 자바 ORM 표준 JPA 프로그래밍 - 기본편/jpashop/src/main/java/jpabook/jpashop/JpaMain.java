@@ -1,6 +1,8 @@
 package jpabook.jpashop;
 
+import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.Team;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,9 +19,24 @@ public class JpaMain {
         tx.begin(); // database Transaction 시작
 
         try {
-            Order order = em.find(Order.class, 1L);
-            Long memberId =order.getMemberId();
-            Member member =
+            // 팀 저장
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
+
+            //회원 저장
+            Member member = new Member();
+            member.setUsername("member1");
+            member.setTeam(team);
+            em.persist(member);
+
+            // 조회
+            Member findMember = em.find(Member.class, member.getId());
+
+            //연관관계가 없음
+            Team findTeam = findMember.getTeam();// 가져오려면 두번해야됨
+            System.out.println("findTeam.name = " + findTeam.getName());
+
             tx.commit();
         }catch(Exception e){
             tx.rollback();

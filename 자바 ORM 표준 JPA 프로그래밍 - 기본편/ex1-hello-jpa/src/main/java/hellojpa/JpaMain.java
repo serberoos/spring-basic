@@ -16,10 +16,6 @@ public class JpaMain {
         tx.begin(); // database Transaction 시작
 
         try {
-            Member member = new Member();
-            member.setUsername("C");
-
-            em.persist(member);
 
             tx.commit();
         }catch(Exception e){
