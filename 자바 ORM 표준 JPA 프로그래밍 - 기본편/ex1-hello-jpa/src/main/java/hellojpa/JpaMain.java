@@ -17,11 +17,20 @@ public class JpaMain {
         tx.begin(); // database Transaction 시작
 
         try {
-            Book book = new Book();
-            book.setName("JPA");
-            book.setAuthor("김영한");
+            Team team = new Team();
+            team.setName("teamA");
+            em.persist(team);
 
-            em.persist(book);
+            Member member1 = new Member();
+            member1.setUsername("member1");
+            member1.setTeam(team);
+            em.persist(member1);
+
+            em.flush();
+            em.clear();
+
+            List<Member> members = em.createQuery("select m from Member m", Member.class)
+                    .getResultList();
 
             tx.commit();
         }catch(Exception e){
