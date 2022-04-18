@@ -1,5 +1,6 @@
 package jpabook.jpashop;
 
+import jpabook.jpashop.domain.Book;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderItem;
@@ -9,7 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args){
@@ -21,19 +21,11 @@ public class JpaMain {
         tx.begin(); // database Transaction 시작
 
         try {
-            Member member1 = new Member();
-            member1.setUsername("member1");
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("김영한");
 
-            em.persist(member1);
-
-            em.flush();
-            em.clear();
-
-            Member refMember = em.getReference(Member.class, member1.getId());
-            System.out.println("refMember = " + refMember.getClass());
-            Hibernate.initialize(refMember); // 강제 초기화
-//            refMember.getUsername();
-//            System.out.println("isLoaded = " + emf.getPersistenceUnitUtil().isLoaded(refMember));
+            em.persist(book);
 
             tx.commit();
         }catch(Exception e){
