@@ -18,40 +18,14 @@ public class JpaMain {
         tx.begin(); // database Transaction 시작
 
         try {
-            Member member = new Member();
-            member.setUsername("member1");
-            member.setHomeAddress(new Address("homeCity", "street", "10000"));
+            List<Member> result =  em.createQuery(
+                    "select m From Member m where m.username like '%kim%'",
+                    Member.class
+            ).getResultList();
 
-            member.getFavoriteFoods().add("치킨");
-            member.getFavoriteFoods().add("족발");
-            member.getFavoriteFoods().add("피자");
-
-            member.getAddressHistory().add(new AddressEntity("old1", "street", "10000"));
-            member.getAddressHistory().add(new AddressEntity("old2", "street", "10000"));
-
-            em.persist(member);
-
-            em.flush();
-            em.clear();
-
-            Member findMember = em.find(Member.class, member.getId());
-
-            //homeCity -> newCity
-//            findMember.getHomeAddress().setCity("newCity");
-
-            Address a = new findMember.getHomeAddress();
-            findMember.setHomeAddress(new Address("newCity", a.getStreet(), a.getZipcode()));
-
-//            List<Address> addressHistory = findMember.getAddressHistory();
-//            for(Address address : addressHistory){
-//                System.out.println("address = " + address.getCity());
-//            }
-//
-//            Set<String> favoriteFoods = findMember.getFavoriteFoods();
-//            for(String favoriteFood : favoriteFoods) {
-//                System.out.println("favoriteFood = " + favoriteFood);
-//            }
-
+            for (Member member :result) {
+                System.out.println("member = " + member);
+            }
             tx.commit();
         }catch(Exception e){
             tx.rollback();
